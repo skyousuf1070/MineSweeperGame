@@ -1,13 +1,12 @@
 public class Grid {
-    private int gridSize;
+    private int size;
     private String[][] squares;
-    int count = 0;
 
     public Grid(String[][] mineFields) {
-        gridSize = mineFields.length;
-        squares = new String[gridSize][gridSize];
-        for (int gridRowIndex = 0;gridRowIndex<gridSize; gridRowIndex++) {
-            for (int gridColumnIndex = 0; gridColumnIndex<gridSize; gridColumnIndex++) {
+        size = mineFields.length;
+        squares = new String[size][size];
+        for (int gridRowIndex = 0; gridRowIndex< size; gridRowIndex++) {
+            for (int gridColumnIndex = 0; gridColumnIndex< size; gridColumnIndex++) {
                 squares[gridRowIndex][gridColumnIndex] = "X";
             }
         }
@@ -15,7 +14,7 @@ public class Grid {
 
     public boolean isValid(int row, int column) {
         final int GRID_LOWER_LIMIT = 0;
-        final int GRID_UPPER_LIMIT = gridSize;
+        final int GRID_UPPER_LIMIT = size;
         boolean isRowColumnOutOfGridRange = row < GRID_LOWER_LIMIT || row >= GRID_UPPER_LIMIT || column < GRID_LOWER_LIMIT || column >= GRID_UPPER_LIMIT;
         boolean isCellFilled = squares[row][column].equalsIgnoreCase("O");
         if (isRowColumnOutOfGridRange) {
@@ -48,8 +47,8 @@ public class Grid {
     public boolean isGameCompleted(String[][] actualGrid){
         boolean allOpenedExceptMinedCell = true;
         boolean isMinedCellOpened = false;
-        for (int gridRowIndex = 0; gridRowIndex < gridSize; gridRowIndex++) {
-            for (int gridColumnIndex = 0; gridColumnIndex < gridSize; gridColumnIndex++) {
+        for (int gridRowIndex = 0; gridRowIndex < size; gridRowIndex++) {
+            for (int gridColumnIndex = 0; gridColumnIndex < size; gridColumnIndex++) {
                 isMinedCellOpened = actualGrid[gridRowIndex][gridColumnIndex].equalsIgnoreCase("m") &&
                                     squares[gridRowIndex][gridColumnIndex].equalsIgnoreCase("o");
                 if (isMinedCellOpened) {
@@ -70,8 +69,8 @@ public class Grid {
         return false;
     }
     public void display() {
-        for (int gridRowIndex = 0; gridRowIndex < gridSize; gridRowIndex++) {
-            for (int gridColumnIndex = 0; gridColumnIndex < gridSize; gridColumnIndex++) {
+        for (int gridRowIndex = 0; gridRowIndex < size; gridRowIndex++) {
+            for (int gridColumnIndex = 0; gridColumnIndex < size; gridColumnIndex++) {
                 System.out.print(squares[gridRowIndex][gridColumnIndex] + " ");
             }
             System.out.println();
