@@ -2,8 +2,8 @@ public class Grid {
     private int size;
     private String[][] squares;
 
-    public Grid(String[][] mineFields) {
-        size = mineFields.length;
+    public Grid(int size) {
+        this.size = size;
         squares = new String[size][size];
         for (int gridRowIndex = 0; gridRowIndex< size; gridRowIndex++) {
             for (int gridColumnIndex = 0; gridColumnIndex< size; gridColumnIndex++) {
