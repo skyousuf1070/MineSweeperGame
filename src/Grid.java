@@ -5,22 +5,23 @@ public class Grid {
     public Grid(int size) {
         this.size = size;
         squares = new String[size][size];
-        for (int gridRowIndex = 0; gridRowIndex< size; gridRowIndex++) {
-            for (int gridColumnIndex = 0; gridColumnIndex< size; gridColumnIndex++) {
+        for (int gridRowIndex = 0; gridRowIndex < size; gridRowIndex++) {
+            for (int gridColumnIndex = 0; gridColumnIndex < size; gridColumnIndex++) {
                 squares[gridRowIndex][gridColumnIndex] = "X";
             }
         }
     }
 
-    public boolean isValid(int row, int column) {
+    private boolean isValid(int row, int column) {
         final int GRID_LOWER_LIMIT = 0;
         final int GRID_UPPER_LIMIT = size;
         boolean isRowColumnOutOfGridRange = row < GRID_LOWER_LIMIT || row >= GRID_UPPER_LIMIT || column < GRID_LOWER_LIMIT || column >= GRID_UPPER_LIMIT;
-        boolean isCellFilled = squares[row][column].equalsIgnoreCase("O");
         if (isRowColumnOutOfGridRange) {
             System.out.println("Invalid Locations");
             return false;
-        } else if (isCellFilled) {
+        }
+        boolean isCellFilled = squares[row][column].equalsIgnoreCase("O");
+        if (isCellFilled) {
             System.out.println("Current location is already occupied");
             return false;
         }
@@ -44,13 +45,13 @@ public class Grid {
         return false;
     }
 
-    public boolean isGameCompleted(String[][] actualGrid){
+    public boolean isGameCompleted(String[][] actualGrid) {
         boolean allOpenedExceptMinedCell = true;
         boolean isMinedCellOpened = false;
         for (int gridRowIndex = 0; gridRowIndex < size; gridRowIndex++) {
             for (int gridColumnIndex = 0; gridColumnIndex < size; gridColumnIndex++) {
                 isMinedCellOpened = actualGrid[gridRowIndex][gridColumnIndex].equalsIgnoreCase("m") &&
-                                    squares[gridRowIndex][gridColumnIndex].equalsIgnoreCase("o");
+                        squares[gridRowIndex][gridColumnIndex].equalsIgnoreCase("o");
                 if (isMinedCellOpened) {
                     System.out.println("Oops! you stepped on a mine! Game over!");
                     return true;
@@ -68,6 +69,7 @@ public class Grid {
         }
         return false;
     }
+
     public void display() {
         for (int gridRowIndex = 0; gridRowIndex < size; gridRowIndex++) {
             for (int gridColumnIndex = 0; gridColumnIndex < size; gridColumnIndex++) {

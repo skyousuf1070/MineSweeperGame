@@ -18,7 +18,16 @@ public class MineSweeperGame {
             }
         }
         while (!playerGrid.isGameCompleted(actualGrid)) {
-            player.play(playerGrid);
+            String option = player.play();
+//            option will something which looks like this o(row,column) or f(row,column)
+            String action = String.valueOf(option.charAt(0));
+            int row = Integer.parseInt(String.valueOf(option.charAt(2)));
+            int column = Integer.parseInt(String.valueOf(option.charAt(4)));
+            if (!playerGrid.isSet(row, column, action)) {
+                System.out.println("OOPS! action undone!");
+            } else {
+                playerGrid.display();
+            }
         }
     }
 
